@@ -1,24 +1,48 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 from models.embedder import get_model
-from utils.processor import load_assessments, get_descriptions, recommend
-import os
+import json
 
 app = Flask(__name__)
+CORS(app)
 
-# Load model and data on startup
+# Load SHL assessment data
+with open("shl_data.json", "r") as f:
+    data = json.load(f)
+
+# Load Sentence Transformer model
 model = get_model()
-data_path = os.path.join(os.path.dirname(__file__), '..', 'data', 'shl_data.json')
-assessments = load_assessments(data_path)
-descriptions = get_descriptions(assessments)
-data_embeddings = model.encode(descriptions)
 
+# Route for homepage
+@app.route("/", methods=["GET"])
+def home():
+    return "✅ SHL Assessment Recommendation Engine is running! Use /recommend with POST requests."
+
+# Recommendation endpoint
 @app.route("/recommend", methods=["POST"])
-def recommend_assessments():
-    data = request.json
-    query = data.get("query", "")
-    query_embedding = model.encode([query])[0]
-    results = recommend(query_embedding, data_embeddings, assessments)
-    return jsonify(results)
+def recommend():
+    req_data = request.get_json()
+    job_desc = req_data.get("job_description")
+
+    if not job_desc:
+        return jsonify({"error": "Missing 'job_description' in request"}), 400
+
+    descriptions = [item["description"] for item in data]
+    embeddings = model.encode(descriptions)
+    query_embedding = model.encode([job_desc])[0]
+
+    # Calculate cosine similarities
+    from sklearn.metrics.pairwise import cosine_similarity
+    scores = cosine_similarity([query_embedding], embeddings)[0]
+    top_indices = scores.argsort()[-3:][::-1]  # Top 3 matches
+
+    recommendations = [
+        {
+            "name": data[i]["name"],
+            "url": data[i]["url"]
+        } for i in top_indices
+    ]
+    return jsonify(recommendations)
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)
