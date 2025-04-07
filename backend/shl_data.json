@@ -1,0 +1,56 @@
+[
+    {
+      "name": "Numerical Reasoning Test",
+      "url": "https://www.shl.com/shldirect/en/assessments/numerical-reasoning",
+      "remote": "Yes",
+      "adaptive": "Yes",
+      "duration": "20 minutes",
+      "type": "Cognitive",
+      "description": "Assesses numerical analysis and problem-solving skills using graphs and data."
+    },
+    {
+      "name": "Verbal Reasoning Test",
+      "url": "https://www.shl.com/shldirect/en/assessments/verbal-reasoning",
+      "remote": "Yes",
+      "adaptive": "Yes",
+      "duration": "19 minutes",
+      "type": "Cognitive",
+      "description": "Assesses verbal comprehension and logical thinking using written information."
+    },
+    {
+      "name": "Personality Questionnaire",
+      "url": "https://www.shl.com/shldirect/en/assessments/personality",
+      "remote": "Yes",
+      "adaptive": "No",
+      "duration": "25 minutes",
+      "type": "Behavioral",
+      "description": "Measures workplace personality traits to determine cultural fit."
+    },
+    {
+      "name": "Situational Judgement Test",
+      "url": "https://www.shl.com/shldirect/en/assessments/situational-judgement",
+      "remote": "Yes",
+      "adaptive": "No",
+      "duration": "30 minutes",
+      "type": "Behavioral",
+      "description": "Assesses decision-making and interpersonal skills through workplace scenarios."
+    },
+    {
+      "name": "Software Developer Technical Test",
+      "url": "https://www.shl.com/shldirect/en/assessments/software-developer",
+      "remote": "Yes",
+      "adaptive": "No",
+      "duration": "45 minutes",
+      "type": "Technical",
+      "description": "Evaluates coding proficiency in Python, JavaScript, and SQL."
+    },
+    {
+      "name": "Mechanical Comprehension Test",
+      "url": "https://www.shl.com/shldirect/en/assessments/mechanical-comprehension",
+      "remote": "Yes",
+      "adaptive": "No",
+      "duration": "35 minutes",
+      "type": "Technical",
+      "description": "Assesses understanding of mechanical concepts like force, motion, and tools."
+    }
+  ]
