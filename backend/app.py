@@ -1,48 +1,42 @@
 from flask import Flask, request, jsonify
-from flask_cors import CORS
-from models.embedder import get_model
+from models.embedder import get_model, embed_text
 import json
+import os
 
 app = Flask(__name__)
-CORS(app)
-
-# Load SHL assessment data
-with open("shl_data.json", "r") as f:
-    data = json.load(f)
-
-# Load Sentence Transformer model
 model = get_model()
 
-# Route for homepage
+# Load SHL data
+with open("shl_data.json", "r") as f:
+    shl_data = json.load(f)
+
+# ✅ Root route for browser check
 @app.route("/", methods=["GET"])
 def home():
-    return "✅ SHL Assessment Recommendation Engine is running! Use /recommend with POST requests."
+    return "✅ SHL Assessment Recommendation Engine is running! Use POST /recommend with a job description."
 
-# Recommendation endpoint
+# ✅ Main recommendation route
 @app.route("/recommend", methods=["POST"])
 def recommend():
-    req_data = request.get_json()
-    job_desc = req_data.get("job_description")
+    data = request.get_json()
+    job_description = data.get("job_description", "")
+    
+    if not job_description:
+        return jsonify({"error": "Missing job_description"}), 400
 
-    if not job_desc:
-        return jsonify({"error": "Missing 'job_description' in request"}), 400
+    query_embedding = embed_text(model, job_description)
 
-    descriptions = [item["description"] for item in data]
-    embeddings = model.encode(descriptions)
-    query_embedding = model.encode([job_desc])[0]
+    recommendations = []
+    for item in shl_data:
+        assessment_embedding = embed_text(model, item["description"])
+        similarity = query_embedding @ assessment_embedding
+        recommendations.append((similarity, item["name"], item["url"]))
 
-    # Calculate cosine similarities
-    from sklearn.metrics.pairwise import cosine_similarity
-    scores = cosine_similarity([query_embedding], embeddings)[0]
-    top_indices = scores.argsort()[-3:][::-1]  # Top 3 matches
+    recommendations.sort(reverse=True)
+    top_recommendations = [{"name": name, "url": url} for _, name, url in recommendations[:3]]
 
-    recommendations = [
-        {
-            "name": data[i]["name"],
-            "url": data[i]["url"]
-        } for i in top_indices
-    ]
-    return jsonify(recommendations)
+    return jsonify(top_recommendations)
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000)
+    port = int(os.environ.get("PORT", 5000))
+    app.run(debug=False, host="0.0.0.0", port=port)
