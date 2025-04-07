@@ -10,12 +10,10 @@ model = get_model()
 with open("shl_data.json", "r") as f:
     shl_data = json.load(f)
 
-# ✅ Root route for browser check
 @app.route("/", methods=["GET"])
 def home():
     return "✅ SHL Assessment Recommendation Engine is running! Use POST /recommend with a job description."
 
-# ✅ Main recommendation route
 @app.route("/recommend", methods=["POST"])
 def recommend():
     data = request.get_json()
@@ -30,12 +28,23 @@ def recommend():
     for item in shl_data:
         assessment_embedding = embed_text(model, item["description"])
         similarity = query_embedding @ assessment_embedding
-        recommendations.append((similarity, item["name"], item["url"]))
+        recommendations.append((similarity, item))
 
-    recommendations.sort(reverse=True)
-    top_recommendations = [{"name": name, "url": url} for _, name, url in recommendations[:3]]
+    # Sort and return top 3
+    top_recommendations = sorted(recommendations, reverse=True)[:3]
+    result = []
+    for _, item in top_recommendations:
+        result.append({
+            "name": item["name"],
+            "url": item["url"],
+            "type": item["type"],
+            "duration": item["duration"],
+            "remote": item["remote"],
+            "adaptive": item["adaptive"],
+            "description": item["description"]
+        })
 
-    return jsonify(top_recommendations)
+    return jsonify(result)
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
