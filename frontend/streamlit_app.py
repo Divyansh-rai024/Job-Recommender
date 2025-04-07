@@ -15,7 +15,7 @@ if st.button("Recommend"):
     else:
         with st.spinner("Analyzing and fetching recommendations..."):
             response = requests.post(
-                "https://recommmendation-assignment.onrender.com/recommend",  # update if needed
+                "https://job-recommender-5vsn.onrender.com/recommend",  # update if needed
                 json={"query": query}
             )
             if response.status_code == 200:
