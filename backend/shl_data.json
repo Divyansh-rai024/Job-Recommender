@@ -1,56 +1,83 @@
 [
-    {
-      "name": "Numerical Reasoning Test",
-      "url": "https://www.shl.com/shldirect/en/assessments/numerical-reasoning",
-      "remote": "Yes",
-      "adaptive": "Yes",
-      "duration": "20 minutes",
-      "type": "Cognitive",
-      "description": "Assesses numerical analysis and problem-solving skills using graphs and data."
-    },
-    {
-      "name": "Verbal Reasoning Test",
-      "url": "https://www.shl.com/shldirect/en/assessments/verbal-reasoning",
-      "remote": "Yes",
-      "adaptive": "Yes",
-      "duration": "19 minutes",
-      "type": "Cognitive",
-      "description": "Assesses verbal comprehension and logical thinking using written information."
-    },
-    {
-      "name": "Personality Questionnaire",
-      "url": "https://www.shl.com/shldirect/en/assessments/personality",
-      "remote": "Yes",
-      "adaptive": "No",
-      "duration": "25 minutes",
-      "type": "Behavioral",
-      "description": "Measures workplace personality traits to determine cultural fit."
-    },
-    {
-      "name": "Situational Judgement Test",
-      "url": "https://www.shl.com/shldirect/en/assessments/situational-judgement",
-      "remote": "Yes",
-      "adaptive": "No",
-      "duration": "30 minutes",
-      "type": "Behavioral",
-      "description": "Assesses decision-making and interpersonal skills through workplace scenarios."
-    },
-    {
-      "name": "Software Developer Technical Test",
-      "url": "https://www.shl.com/shldirect/en/assessments/software-developer",
-      "remote": "Yes",
-      "adaptive": "No",
-      "duration": "45 minutes",
-      "type": "Technical",
-      "description": "Evaluates coding proficiency in Python, JavaScript, and SQL."
-    },
-    {
-      "name": "Mechanical Comprehension Test",
-      "url": "https://www.shl.com/shldirect/en/assessments/mechanical-comprehension",
-      "remote": "Yes",
-      "adaptive": "No",
-      "duration": "35 minutes",
-      "type": "Technical",
-      "description": "Assesses understanding of mechanical concepts like force, motion, and tools."
-    }
-  ]
+  {
+    "name": "Java Developer Test (Intermediate)",
+    "url": "https://www.shl.com/shldirect/en/assessments/java",
+    "remote": "Yes",
+    "adaptive": "No",
+    "duration": "25 minutes",
+    "type": "Technical",
+    "description": "Evaluates object-oriented programming, debugging, and Java language proficiency."
+  },
+  {
+    "name": "Workplace Behaviour Test – Collaboration & Communication",
+    "url": "https://www.shl.com/en/assessments/personality-behavior/",
+    "remote": "Yes",
+    "adaptive": "No",
+    "duration": "15 minutes",
+    "type": "Behavioral",
+    "description": "Assesses ability to collaborate with teams and communicate effectively across business units."
+  },
+  {
+    "name": "Python Developer Test (Intermediate)",
+    "url": "https://www.shl.com/shldirect/en/assessments/python",
+    "remote": "Yes",
+    "adaptive": "No",
+    "duration": "20 minutes",
+    "type": "Technical",
+    "description": "Measures Python coding ability including data structures, logic, and syntax."
+  },
+  {
+    "name": "SQL Developer Test (Intermediate)",
+    "url": "https://www.shl.com/shldirect/en/assessments/sql",
+    "remote": "Yes",
+    "adaptive": "No",
+    "duration": "15 minutes",
+    "type": "Technical",
+    "description": "Tests SQL querying skills including joins, filtering, and aggregate functions."
+  },
+  {
+    "name": "JavaScript Developer Test (Intermediate)",
+    "url": "https://www.shl.com/shldirect/en/assessments/javascript",
+    "remote": "Yes",
+    "adaptive": "No",
+    "duration": "20 minutes",
+    "type": "Technical",
+    "description": "Evaluates JavaScript fundamentals, DOM manipulation, and event handling."
+  },
+  {
+    "name": "Cognitive Ability Test (General Aptitude)",
+    "url": "https://www.shl.com/shldirect/en/assessments/cognitive-ability/",
+    "remote": "Yes",
+    "adaptive": "Yes",
+    "duration": "25 minutes",
+    "type": "Cognitive",
+    "description": "Assesses numerical, verbal, and logical reasoning essential for analytical roles."
+  },
+  {
+    "name": "Personality Questionnaire (OPQ32 Snapshot)",
+    "url": "https://www.shl.com/shldirect/en/assessments/personality/",
+    "remote": "Yes",
+    "adaptive": "No",
+    "duration": "20 minutes",
+    "type": "Behavioral",
+    "description": "Evaluates workplace personality traits including decision-making, sociability, and drive."
+  },
+  {
+    "name": "Sales Potential Assessment (Early Careers)",
+    "url": "https://www.shl.com/en/assessments/sales-potential/",
+    "remote": "Yes",
+    "adaptive": "No",
+    "duration": "40 minutes",
+    "type": "Behavioral",
+    "description": "Identifies drive, resilience, and interpersonal qualities for sales success."
+  },
+  {
+    "name": "Situational Judgement Test – Sales",
+    "url": "https://www.shl.com/en/assessments/situational-judgement/",
+    "remote": "Yes",
+    "adaptive": "No",
+    "duration": "20 minutes",
+    "type": "Behavioral",
+    "description": "Assesses judgment and decision-making in realistic sales and customer-facing situations."
+  }
+]
